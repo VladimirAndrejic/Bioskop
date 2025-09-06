@@ -1,0 +1,20 @@
+<div class="search-container">
+   <!-- funkcija pretrazivanje filmova po imenu -->
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Pretrazi</mat-label>
+    <input matInput [(ngModel)]="searchQuery" (ngModelChange)="searchQueryChanged($event)" placeholder="Ime filma"
+      autocomplete="off" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <div class="results-container" *ngIf="searchResults.length > 0">
+    <div *ngFor="let movie of searchResults" class="result-item" (click)="selectMovie(movie)">
+      <img *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w92' + movie.poster_path" [alt]="movie.title"
+        class="movie-poster" />
+      <div class="movie-info">
+        <h3>{{ movie.title }}</h3>
+        <p class="year">{{ movie.release_date | date : 'yyyy' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

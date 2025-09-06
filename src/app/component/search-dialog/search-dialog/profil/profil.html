@@ -1,0 +1,73 @@
+<div *ngIf="korisnik; else nijeUlogovan" class="container">
+  <div class="main-body">
+     <!-- prikaz podatka prijavljneog korisnika koji posle moze da promeni podatke -->
+    <nav aria-label="breadcrumb" class="main-breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+        <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+      </ol>
+    </nav>
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div *ngIf="!editMode; else izmenaForme">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{ korisnik.ime }} {{ korisnik.prezime }}</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{ korisnik.email }}</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Phone</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{ korisnik.telefon }}</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Address</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{ korisnik.adresa }}</div>
+              </div>
+              <hr>
+              <button class="btn btn-info" (click)="editMode = true">Izmeni podatke</button>
+              <button class="btn btn-danger" (click)="odjaviSe()">Odjavi se</button>
+            </div>
+            <ng-template #izmenaForme>
+              <form (ngSubmit)="sacuvajIzmene()">
+                <label>Ime: <input [(ngModel)]="korisnik.ime" name="ime" class="form-control" /></label><br />
+                <label>Prezime: <input [(ngModel)]="korisnik.prezime" name="prezime"
+                    class="form-control" /></label><br />
+                <label>Email: <input [(ngModel)]="korisnik.email" name="email" class="form-control" /></label><br />
+                <label>Telefon: <input [(ngModel)]="korisnik.telefon" name="telefon"
+                    class="form-control" /></label><br />
+                <label>Adresa: <input [(ngModel)]="korisnik.adresa" name="adresa"
+                    class="form-control" /></label><br /><br />
+                <button type="submit" class="btn btn-success">Sačuvaj izmene</button>
+                <button type="button" class="btn btn-secondary" (click)="editMode = false">Otkaži</button>
+              </form>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #nijeUlogovan>
+  <p><a mat-button routerLink="/login">Niste ulogovani prijavite se</a></p>
+</ng-template>

@@ -1,0 +1,50 @@
+.search-container {
+  padding: 16px;
+  width: 500px;
+  max-width: 100%;
+}
+
+.search-field {
+  width: 100%;
+}
+
+.results-container {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.result-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.movie-poster {
+  width: 45px;
+  height: 68px;
+  object-fit: cover;
+  margin-right: 16px;
+  border-radius: 4px;
+}
+
+.movie-info {
+  flex: 1;
+}
+
+.movie-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.year {
+  margin: 4px 0 0;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+}

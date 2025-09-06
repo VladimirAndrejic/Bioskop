@@ -1,0 +1,104 @@
+<div class="backdrop" [style.backgroundImage]="'url(https://image.tmdb.org/t/p/original' + movie.backdrop_path + ')'">
+  <div class="backdrop-overlay"></div>
+</div>
+
+<div class="container" *ngIf="movie">
+  <div class="content">
+    <div class="movie-info">
+      <div class="poster">
+        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title" />
+      </div>
+       <!-- opis filma, glumci, reziser,zanr, kao i mogucnost ako je korisnik prijavljne, da ostavi komentar i ocenu,u suprotnom 
+        sajt ce sakriti funkciju dok se korisnik ne prijavi -->
+      <div class="details">
+        <h1>{{ movie.title }}</h1>
+
+        <div class="meta">
+          <mat-chip-set>
+            <mat-chip color="accent">
+              <mat-icon>star</mat-icon>
+              {{ movie.vote_average }}
+            </mat-chip>
+            <mat-chip>{{ movie.release_date | date : "yyyy" }}</mat-chip>
+          </mat-chip-set>
+        </div>
+        <p><strong>Trajanje:</strong> {{ trajanje }} minuta</p>
+        <p><strong>Režiser:</strong> {{ reziser }}</p>
+        <p><strong>Glumci:</strong> {{ glumci.join(', ') }}</p>
+        <p><strong>Žanrovi:</strong> {{ zanroviTekst }}</p>
+
+        <div class="overview">
+          <h3>Opis</h3>
+          <p>{{ movie.overview }}</p>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Povratak
+        </button>
+
+        <div *ngIf="ulogovanKorisnik; else nijeUlogovan" class="review-section">
+          <h3>Ostavi recenziju</h3>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Komentar</mat-label>
+            <textarea matInput [(ngModel)]="komentar" rows="3" placeholder="Napišite komentar..."></textarea>
+          </mat-form-field>
+
+          <div class="rating-container">
+            <label>Ocena:</label>
+            <div class="rating">
+              <input type="radio" id="star5" name="stars" [value]="5" [(ngModel)]="ocena" />
+              <label for="star5">★</label>
+
+              <input type="radio" id="star4" name="stars" [value]="4" [(ngModel)]="ocena" />
+              <label for="star4">★</label>
+
+              <input type="radio" id="star3" name="stars" [value]="3" [(ngModel)]="ocena" />
+              <label for="star3">★</label>
+
+              <input type="radio" id="star2" name="stars" [value]="2" [(ngModel)]="ocena" />
+              <label for="star2">★</label>
+
+              <input type="radio" id="star1" name="stars" [value]="1" [(ngModel)]="ocena" />
+              <label for="star1">★</label>
+            </div>
+            <span class="rating-value">{{ ocena }}/5</span>
+          </div>
+
+          <button mat-raised-button color="accent" (click)="posaljiReview()" class="m-1">
+            Pošalji recenziju
+          </button>
+
+          <button mat-raised-button color="warn" (click)="rezervisiKartu()" class="m-1">
+            Rezerviši kartu
+          </button>
+        </div>
+
+        <div class="reviews">
+          <h3>Recenzije korisnika</h3>
+          <div *ngIf="recenzijeFilma.length > 0; else nemaRecenzija">
+            <div *ngFor="let rec of recenzijeFilma" class="review-item">
+              <p><strong>{{ rec.korisnik }}</strong> - Ocena: {{ rec.ocena }}/5</p>
+              <p>{{ rec.komentar }}</p>
+              <hr />
+            </div>
+          </div>
+          <ng-template #nemaRecenzija>
+            <p style="color: gray;"><i>Nema recenzija za ovaj film.</i></p>
+          </ng-template>
+        </div>
+
+        <ng-template #nijeUlogovan>
+          <p style="margin-top: 20px; color: gray">
+            <i>Morate biti <a routerLink="/login">ulogovani</a> da biste ostavili recenziju i rezervisali kartu.</i>
+          </p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>

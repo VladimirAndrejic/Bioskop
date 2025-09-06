@@ -1,0 +1,160 @@
+.container {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  background-color: #141414;
+  color: white;
+  z-index: 1;
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.backdrop-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(20,20,20,0.5) 0%, #141414 100%);
+}
+
+.content {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  z-index: 2;
+}
+
+.movie-info {
+  display: flex;
+  gap: 40px;
+  padding-top: 60px;
+}
+
+.poster {
+  flex-shrink: 0;
+  width: 300px;
+}
+
+.poster img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.details {
+  flex-grow: 1;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.meta {
+  margin-bottom: 30px;
+}
+
+.overview {
+  margin-bottom: 30px;
+}
+
+.overview h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.overview p {
+  line-height: 1.6;
+  color: #cccccc;
+}
+
+.review-section mat-card {
+  background: #1f1f1f;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  margin-top: 20px;
+}
+
+.review-section mat-card-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.review-item {
+  background: #1f1f1f;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 64px);
+  background-color: #141414;
+}
+
+@media (max-width: 768px) {
+  .movie-info {
+    flex-direction: column;
+  }
+
+  .poster {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+.rating-container {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.rating {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  font-size: 2rem;
+  position: relative;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  color: #555;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: gold;
+}
+
+.rating-value {
+  font-size: 1.2rem;
+  color: #ccc;
+}

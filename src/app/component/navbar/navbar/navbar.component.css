@@ -1,0 +1,36 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.moon-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  color: red;
+}
+
+.moon-button:focus {
+  outline: none;
+}
+
+.moon-button:hover {
+  color: #e22b2b;
+}
+
+/* roze navigacioni bar */
+mat-toolbar {
+  width: 100%;
+  background-color: rgb(187, 17, 46) !important;
+  color: white !important;
+}
+
+
+
+

@@ -1,0 +1,25 @@
+<div class="container">
+  <h2 class="section-title">Lista filmova</h2>
+  <div class="movies-grid">
+     <!-- prikaz liste filmova, veca baza filmova je u pitanju -->
+    <mat-card *ngFor="let movie of movies" class="movie-card">
+      <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" [alt]="movie.title"
+        [routerLink]="['/movie', movie.id]" class="movie-poster" />
+      <mat-card-content>
+        <mat-chip-listbox>
+          <mat-chip highlighted>{{ movie.vote_average }}</mat-chip>
+        </mat-chip-listbox>
+        <h3 class="movie-title">{{ movie.title }}</h3>
+        <p class="movie-title">
+          {{ movie.release_date | date : "dd MMM yyyy" }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage" [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)" aria-label="Select page">
+  </mat-paginator>
+  <div *ngIf="loading" class="loading-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
